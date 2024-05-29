@@ -1,0 +1,24 @@
+resilience4j:
+  circuitbreaker:
+   instances:
+     customerservice:
+       registerHealthIndicator: true
+       slidingWindowSize: 5
+       minimumNumberOfCalls: 5
+       permittedNumberOfCallsInHalfOpenState: 3
+       automaticTransitionFromOpenToHalfOpenEnabled: true
+       waitDurationInOpenState: 10s
+       failureRateThreshold: 50
+       eventConsumerBufferSize: 8
+
+management:
+  health:
+    circuitbreakers:
+      enabled: 'true'
+  endpoint:
+    health:
+      show-details: "ALWAYS"
+  endpoints:
+    web:
+      exposure:
+        include: "*"
